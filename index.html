@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amir Bhattarai - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e2e, #292a36);
+            color: white;
+            text-align: center;
+            transition: background 0.3s, color 0.3s;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background: rgba(41, 42, 54, 0.9);
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .navbar a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #00adb5;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            padding-top: 80px;
+        }
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #00adb5;
+            margin-right: 20px;
+            transition: transform 0.3s;
+        }
+        .profile-pic:hover {
+            transform: scale(1.1);
+        }
+        .social-links a {
+            margin: 10px;
+            color: white;
+            font-size: 24px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            color: #00adb5;
+            transform: translateY(-5px);
+        }
+        .projects-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .project-card {
+            background: rgba(41, 42, 54, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            width: 300px;
+        }
+        .project-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        .skill-bar {
+            margin: 10px 0;
+            text-align: left;
+        }
+        .progress {
+            width: 100%;
+            background: #444;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-value {
+            height: 20px;
+            background: #00adb5;
+            transition: width 0.5s;
+        }
+        button {
+            background: #00adb5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background: #007b83;
+            transform: scale(1.05);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin: auto;
+            gap: 10px;
+        }
+        .contact-form input, .contact-form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: #444;
+            color: white;
+        }
+        .contact-form input::placeholder, .contact-form textarea::placeholder {
+            color: #aaa;
+        }
+        .contact-form button {
+            width: 100%;
+        }
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00adb5;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+        }
+        .theme-toggle:hover {
+            background: #007b83;
+        }
+        .light-theme {
+            background: #f4f4f4;
+            color: #333;
+        }
+        .light-theme .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .light-theme .navbar a {
+            color: #333;
+        }
+        .light-theme .navbar a:hover {
+            color: #00adb5;
+        }
+        .light-theme .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .light-theme .contact-form input, .light-theme .contact-form textarea {
+            background: #fff;
+            color: #333;
+        }
+        .light-theme .contact-form input::placeholder, .light-theme .contact-form textarea::placeholder {
+            color: #666;
+        }
+        .emoji {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        .facebook-button {
+            background: #3b5998;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .facebook-button:hover {
+            background: #2d4373;
+            transform: translateY(-5px);
+        }
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #00adb5;
+        }
+        .about-content {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.8;
+        }
+        .about-content p {
+            margin-bottom: 20px;
+        }
+        .project-card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .project-card h3 {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+        .project-card p {
+            font-size: 16px;
+            color: #ccc;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .skill-card {
+            background: rgba(41, 42, 54, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .skill-card:hover {
+            transform: scale(1.1);
+        }
+        .skill-card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #00adb5;
+        }
+        .skill-card h3 {
+            margin: 10px 0;
+            font-size: 20px;
+        }
+        .skill-card p {
+            font-size: 14px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="#home">🏠 Home</a>
+        <a href="#about">👤 About</a>
+        <a href="#projects">💻 Projects</a>
+        <a href="#skills">📊 Skills</a>
+        <a href="#contact">📞 Contact</a>
+    </nav>
+    <div class="container">
+        <!-- Home Section -->
+        <section id="home">
+            <div style="display: flex; align-items: center; gap: 30px; text-align: left;">
+                <!-- Profile Picture -->
+                <img src="Amir Bhattarai.JPG" alt="Profile" class="profile-pic">
+                
+                <!-- Text Content -->
+                <div>
+                    <h1 style="font-size: 48px; margin: 0; color: #00adb5;">NAMASTE 👋</h1>
+                    <p style="font-size: 20px; margin: 10px 0;">Welcome to my portfolio website. Explore my projects and skills.</p>
+                    
+                    <!-- Social Links -->
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="https://www.facebook.com/amir.gulmeli.31" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://github.com/AmirBR996" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/reels/DGbGF6CKg7x" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/amir-bhattarai-7577b4322" target="_blank"><i class="fab fa-linkedin"></i></a>
+                
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>
+                    Hi there! 👋 I'm Amir Bhattarai, a passionate tech enthusiast currently pursuing a degree in BSc CSIT. I have a deep love for technology and innovation, and I'm always eager to learn new things. My journey in tech started with a curiosity for how things work, and it has grown into a passion for creating impactful solutions.
+                </p>
+                <p>
+                    I specialize in frontend development, artificial intelligence, and machine learning. I believe in the power of continuous learning and am constantly amazed by how machine learning can lead to groundbreaking innovations. My goal is to become a skilled frontend developer who can seamlessly integrate apps with machine learning models to solve real-world problems.
+                </p>
+                <p>
+                    In my free time, I enjoy working on personal projects, contributing to open-source communities, and exploring the latest trends in tech. I'm also an avid reader and love diving into books about technology, philosophy, and personal development.
+                </p>
+                <p>
+                    I'm excited about the future of technology and can't wait to see where this journey takes me. Let's build something amazing together! 🚀
+                </p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-container">
+                <div class="project-card">
+                    <h3>Multilingual Chatbot</h3>
+                    <p>Developed a multilingual chatbot capable of integrating three languages: Nepali, English, and Romanized Nepali. This project was created for my college to assist students with queries in their preferred language.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Python Management System</h3>
+                    <p>Built a management system using Python with a MySQL database for efficient data storage and retrieval. This system was designed to streamline operations for small businesses.</p>
+                </div>
+                <div class="project-card">
+                    
+                    <h3>Real-Life Prediction Model</h3>
+                    <p>Created a machine learning model for real-life applications, focusing on predictive analytics. This model was used to forecast trends and make data-driven decisions.</p>
+                </div>
+                <div class="project-card">
+                
+                    <h3>Portfolio Website</h3>
+                    <p>Designed and developed this portfolio website to showcase my skills, projects, and achievements. Built with HTML, CSS, and JavaScript, it reflects my passion for frontend development.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>C Programming</h3>
+                    <p>Proficient in C programming with experience in building system-level applications and algorithms.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-python"></i>
+                    <h3>Python</h3>
+                    <p>Skilled in Python for web development, data analysis, and machine learning projects.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-database"></i>
+                    <h3>SQL</h3>
+                    <p>Experienced in designing and managing databases using MySQL and SQL Server.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fab fa-js"></i>
+                    <h3>JavaScript</h3>
+                    <p>Proficient in JavaScript for building interactive and dynamic web applications.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Knowledgeable in machine learning concepts and frameworks like PyTorch and TensorFlow.</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>C++</h3>
+                    <p>Skilled in programming with C++, including creating efficient and intuitive software solutions.</p>
+                </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <p>Email: amirgulmeli123@gmail.com</p>
+            <p>Phone: +977 9818585524</p>
+            <p>Location: Kathmandu, Nepal</p>
+            <div class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="text" placeholder="Your Number" required>
+                <textarea placeholder="Your Comment" required></textarea>
+                <button type="submit">Submit</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="slider"></span>
+    </button>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            document.querySelector('.slider').classList.toggle('active');
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting the traditional way
+
+            // Clear the form fields
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('comment').value = '';
+
+        
+        });
+    
+    </script>
+</body>
+</html>
